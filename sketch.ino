@@ -82,7 +82,7 @@ void loop() {
   float temp = dht.readTemperature();
 
   // Converte o valor analógico em valor lux:
-  int analogValue = analogRead(32);
+  int analogValue = analogRead(34);
   float voltage = analogValue / 1024. * 5;
   float resistance = 2000 * voltage / (1 - voltage / 5);
   float lux = pow(RL10 * 1e3 * pow(10, GAMMA) / resistance, (1 / GAMMA));
@@ -132,46 +132,57 @@ void notifLux(int bpmP, int luxP) {
     myTone(buzzer);
     digitalWrite(led2, HIGH);
     delay(500);
-    lcd.clear();
   }
   else if (bpmP > 160 && luxP < 40)
   {
     myTone(buzzer);
     digitalWrite(led2, HIGH);
     delay(500);
-    lcd.clear();
   }
   else
   {
     myNoTone(buzzer);
     digitalWrite(led2, LOW);
     delay(500);
-    lcd.clear();
   }
 }
 
 void notifLed(int bpm2) {
+  String teste;
+  lcd.setCursor(0, 1);
   lcd.print("BPM: ");
   if(bpm2 < 100)
   {
+    teste = "WARNING!";
     lcd.print(bpm2);
+    lcd.print("          ");
+    lcd.setCursor(0, 0);
+    lcd.print(teste);
     digitalWrite(led, HIGH);
     delay(500);
-    lcd.clear();
   }
   else if (bpm2 > 160)
   {
-
+    teste = "WARNING!";
     lcd.print(bpm2);
+    lcd.print("          ");
+    lcd.setCursor(0, 0);
+    lcd.print(teste);
     digitalWrite(led, HIGH);
     delay(500);
-    lcd.clear();
   }
   else
   {
+    teste = "Ok!";
     lcd.print(bpm2);
+    lcd.print("          ");
+    lcd.setCursor(0, 0);
+    lcd.print(teste);
+    lcd.setCursor(3, 0);
+    for (int i = 3; i <=8; i++) {
+      lcd.print(" ");
+    }
     digitalWrite(led, LOW);
     delay(500);
-    lcd.clear();
   }
 }
