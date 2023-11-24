@@ -19,7 +19,7 @@ https://wokwi.com/projects/381603655434117121
 
 ![Botão de simulação](https://github.com/vSeiji/GS_IOT_FIAP/assets/101117075/3d2d79d8-5b04-43db-9d66-0517775d2278)
 
-**Obs: O Wifi pode demorar um pouco para conectar, porem caso veja a imagem abaixo com um X, reinicie a simulação**
+**Obs: O Wifi pode demorar um pouco para conectar, porem caso veja a imagem abaixo, reinicie a simulação**
 
 ![wifi](https://github.com/vSeiji/GS_IOT_FIAP/assets/101117075/62d34f14-6fca-4508-ae6e-1269934df00b)
 
