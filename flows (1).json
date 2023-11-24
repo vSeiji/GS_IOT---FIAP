@@ -1,0 +1,861 @@
+[
+    {
+        "id": "b886586391c27b9d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1a2efaa6fdd03aba",
+        "type": "mqtt in",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "368f24f2f4011935",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 440,
+        "wires": [
+            [
+                "76bcf1deec25fced",
+                "9fde63cb4b7406c8"
+            ]
+        ]
+    },
+    {
+        "id": "47753938ee7b12b5",
+        "type": "mqtt in",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/umid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "368f24f2f4011935",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 560,
+        "wires": [
+            [
+                "76bcf1deec25fced",
+                "8e75482fc98830ce"
+            ]
+        ]
+    },
+    {
+        "id": "d1a5efd657aeca4a",
+        "type": "mqtt in",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/bpm",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "368f24f2f4011935",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 740,
+        "wires": [
+            [
+                "267796a7a3966d55",
+                "76bcf1deec25fced"
+            ]
+        ]
+    },
+    {
+        "id": "267796a7a3966d55",
+        "type": "switch",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "160",
+                "vt": "num"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1030,
+        "y": 740,
+        "wires": [
+            [
+                "19f575be5f649ecb",
+                "a13e626ba1c37674",
+                "c3459b83bbddf11b"
+            ],
+            [
+                "18ac7c616a7e9074",
+                "a13e626ba1c37674",
+                "c3459b83bbddf11b"
+            ],
+            [
+                "a13e626ba1c37674",
+                "c3459b83bbddf11b"
+            ]
+        ]
+    },
+    {
+        "id": "ad2da25af3d8e4dc",
+        "type": "ui_gauge",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "group": "bf2a8b46b15d495b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Corporal",
+        "label": "Celsius",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#50a1ed",
+            "#e3a754",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1260,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f121b34c3e7318c9",
+        "type": "ui_gauge",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "group": "bf2a8b46b15d495b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Umidade",
+        "label": "% Umidade Relativa ao ar",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#e54343",
+            "#e6e600",
+            "#2bad1a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1220,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "19f575be5f649ecb",
+        "type": "function",
+        "z": "b886586391c27b9d",
+        "name": "function 13",
+        "func": "msg.payload = \"Bpm ABAIXO do esperado!\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 680,
+        "wires": [
+            [
+                "c66d5fa74f70f0c2"
+            ]
+        ]
+    },
+    {
+        "id": "18ac7c616a7e9074",
+        "type": "function",
+        "z": "b886586391c27b9d",
+        "name": "function 14",
+        "func": "msg.payload = \"Bpm ACIMA do esperado!\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 720,
+        "wires": [
+            [
+                "7dc15d8fdde910a0"
+            ]
+        ]
+    },
+    {
+        "id": "a13e626ba1c37674",
+        "type": "ui_gauge",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "group": "b5882fb8ebc3c2c5",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Bpm",
+        "label": "bpm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#f04242",
+            "#49ee6a",
+            "#ee3f3f"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1230,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "c66d5fa74f70f0c2",
+        "type": "ui_toast",
+        "z": "b886586391c27b9d",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1450,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7dc15d8fdde910a0",
+        "type": "ui_toast",
+        "z": "b886586391c27b9d",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1450,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c3459b83bbddf11b",
+        "type": "ui_chart",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "group": "b5882fb8ebc3c2c5",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Monitor Cardiaco",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1270,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2dfc490f75fe3f93",
+        "type": "mqtt out",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/temp",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c5a8d3144fefc1d3",
+        "x": 1040,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "076bc84fd2263079",
+        "type": "inject",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "24",
+        "payloadType": "str",
+        "x": 750,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d432998e62693cd1",
+        "type": "inject",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "40",
+        "payloadType": "str",
+        "x": 750,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4d485488e92eb20",
+        "type": "inject",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "120",
+        "payloadType": "str",
+        "x": 750,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "914c7a8ad027d0d3",
+        "type": "mqtt out",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/umid",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c5a8d3144fefc1d3",
+        "x": 1040,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c9f69ca8f36a1e5a",
+        "type": "mqtt out",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/bpm",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c5a8d3144fefc1d3",
+        "x": 1040,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "76bcf1deec25fced",
+        "type": "join",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 920,
+        "wires": [
+            [
+                "a667d27dcdec75ce",
+                "a3375743b7266b9e"
+            ]
+        ]
+    },
+    {
+        "id": "a667d27dcdec75ce",
+        "type": "json",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 1190,
+        "y": 920,
+        "wires": [
+            [
+                "cc1d2ad47dccece9"
+            ]
+        ]
+    },
+    {
+        "id": "a3375743b7266b9e",
+        "type": "debug",
+        "z": "b886586391c27b9d",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "cc1d2ad47dccece9",
+        "type": "debug",
+        "z": "b886586391c27b9d",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "986db9e4874d2b43",
+        "type": "comment",
+        "z": "b886586391c27b9d",
+        "name": "Nós de teste",
+        "info": "\n\n\n",
+        "x": 750,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ffcd890aa11f5a38",
+        "type": "mqtt in",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/lux",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c5a8d3144fefc1d3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "47a071991abd633d",
+                "76bcf1deec25fced"
+            ]
+        ]
+    },
+    {
+        "id": "47a071991abd633d",
+        "type": "ui_gauge",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "group": "b5882fb8ebc3c2c5",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Luminosidade",
+        "label": "Lux",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10000",
+        "colors": [
+            "#74d888",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1040,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8e75482fc98830ce",
+        "type": "switch",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "f121b34c3e7318c9",
+                "2a140829aa4899eb"
+            ],
+            [
+                "f121b34c3e7318c9"
+            ]
+        ]
+    },
+    {
+        "id": "9fde63cb4b7406c8",
+        "type": "switch",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "37",
+                "vt": "num"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1030,
+        "y": 440,
+        "wires": [
+            [
+                "ad2da25af3d8e4dc",
+                "db6f71596b0acd3f"
+            ],
+            [
+                "ad2da25af3d8e4dc"
+            ]
+        ]
+    },
+    {
+        "id": "db6f71596b0acd3f",
+        "type": "function",
+        "z": "b886586391c27b9d",
+        "name": "function 15",
+        "func": "msg.payload = \"Temperatura corporal acima do esperado.\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 480,
+        "wires": [
+            [
+                "bd6f2ad7498f9ad2"
+            ]
+        ]
+    },
+    {
+        "id": "bd6f2ad7498f9ad2",
+        "type": "ui_toast",
+        "z": "b886586391c27b9d",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1450,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2a140829aa4899eb",
+        "type": "function",
+        "z": "b886586391c27b9d",
+        "name": "function 16",
+        "func": "msg.payload = \"ATENÇÃO: UMIDADE BAIXA, HIDRATE-SE.\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 600,
+        "wires": [
+            [
+                "99778c31d10e416d"
+            ]
+        ]
+    },
+    {
+        "id": "99778c31d10e416d",
+        "type": "ui_toast",
+        "z": "b886586391c27b9d",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1450,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "2acde473faf8682c",
+        "type": "inject",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "400",
+        "payloadType": "str",
+        "x": 750,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "384b08dbc38d210b",
+        "type": "mqtt out",
+        "z": "b886586391c27b9d",
+        "name": "",
+        "topic": "GS-IOT/projeto/lux",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c5a8d3144fefc1d3",
+        "x": 1030,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "368f24f2f4011935",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bf2a8b46b15d495b",
+        "type": "ui_group",
+        "name": "Dashboard2",
+        "tab": "46bcebb121042354",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b5882fb8ebc3c2c5",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "46bcebb121042354",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c5a8d3144fefc1d3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "46bcebb121042354",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
