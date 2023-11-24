@@ -23,4 +23,4 @@ https://wokwi.com/projects/381603655434117121
 
 ![wifi](https://github.com/vSeiji/GS_IOT_FIAP/assets/101117075/62d34f14-6fca-4508-ae6e-1269934df00b)
 
-Para testar o flow do Node-red importe o arquivo flow.json
+Para testar o flow do Node-red importe o arquivo flow.json no Node-red
