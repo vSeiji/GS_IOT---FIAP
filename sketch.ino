@@ -112,7 +112,6 @@ void loop() {
   client.publish(topicLux, luxStr);
    
   client.loop();
- 
 }
 
 void myTone( int pin)
