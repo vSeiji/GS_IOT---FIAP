@@ -19,4 +19,7 @@ https://wokwi.com/projects/381603655434117121
 
 ![Botão de simulação](https://github.com/vSeiji/GS_IOT_FIAP/assets/101117075/3d2d79d8-5b04-43db-9d66-0517775d2278)
 
+**Obs: O Wifi pode demorar um pouco para conectar, porem caso veja a imagem abaixo com um X, reinicie a simulação**
+![Screenshot 2023-11-24 154440](https://github.com/vSeiji/GS_IOT_FIAP/assets/101117075/72b5ad4c-dd27-4254-b184-4a7618e765b7)
+
 Para testar o flow do Node-red importe o arquivo flow.json
